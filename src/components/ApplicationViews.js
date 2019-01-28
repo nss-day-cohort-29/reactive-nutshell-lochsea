@@ -3,6 +3,9 @@ import React, { Component } from "react";
 // Hannah: added import to pass props to task components:
 import TaskManager from "./todo/TaskManager";
 
+import EventsList from "./events/EventsList";
+import NewEventForm from "./events/NewEventForm";
+import EditEventForm from "./events/EditEventForm";
 
 export default class ApplicationViews extends Component {
 
@@ -67,8 +70,19 @@ componentDidMount() {
         />
         <Route
         exact path="/events" render={props => {
-            return null
-            // Remove null and return the component which will show events
+            return <EventsList />
+          }}
+          />
+
+        <Route
+        path="/events/new" render={props => {
+            return <NewEventForm />
+          }}
+          />
+
+        <Route
+        path="/events/edit" render={props => {
+            return <EditEventForm />
           }}
         />
       </React.Fragment>
