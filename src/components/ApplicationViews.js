@@ -1,5 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import EventsList from "./events/EventsList";
+import NewEventForm from "./events/NewEventForm";
+import EditEventForm from "./events/EditEventForm";
 
 export default class ApplicationViews extends Component {
 
@@ -37,8 +40,19 @@ export default class ApplicationViews extends Component {
 
         <Route
         exact path="/events" render={props => {
-            return null
-            // Remove null and return the component which will show events
+            return <EventsList />
+          }}
+          />
+
+        <Route
+        path="/events/new" render={props => {
+            return <NewEventForm />
+          }}
+          />
+
+        <Route
+        path="/events/edit" render={props => {
+            return <EditEventForm />
           }}
           />
       </React.Fragment>
