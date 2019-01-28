@@ -34,7 +34,13 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's tasks
           }}
         />
-        
+
+        <Route
+        exact path="/events" render={props => {
+            return null
+            // Remove null and return the component which will show events
+          }}
+          />
       </React.Fragment>
     );
   }
