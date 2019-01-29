@@ -1,5 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+// Hannah: added import to pass props to task components:
+import TaskManager from "./todo/TaskManager";
+import TaskList from "./todo/TaskList";
 import EventsList from "./events/EventsList";
 import NewEventForm from "./events/NewEventForm";
 import EditEventForm from "./events/EditEventForm";
@@ -8,7 +11,8 @@ import EventsManager from "./events/EventsManager"
 export default class ApplicationViews extends Component {
 
     state = {
-      events: []
+      events: [],
+      tasks: []
     }
 
   postEvent = (newEventObject) => EventsManager.post(newEventObject)
@@ -25,7 +29,14 @@ export default class ApplicationViews extends Component {
             events: allEvents
         })
     })
-  }
+
+    TaskManager.getAll().then(allTasks => {
+      this.setState({
+        tasks: allTasks
+      })
+    })
+}
+
 
   render() {
     return (
@@ -52,14 +63,12 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-        <Route
-          path="/tasks" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
-          }}
+        <Route path="/tasks" render={props => {
+          return(<TaskList {...props} todos={this.state.tasks}/>
+          );
+        }}
         />
-
-        <Route
+          <Route
         exact path="/events" render={props => {
             return ( <EventsList {...props} events = {this.state.events} /> )
           }}
@@ -75,7 +84,7 @@ export default class ApplicationViews extends Component {
         path="/events/edit" render={props => {
             return ( <EditEventForm {...props} /> )
           }}
-          />
+        />
       </React.Fragment>
     );
   }
