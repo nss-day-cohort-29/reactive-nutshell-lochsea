@@ -1,6 +1,9 @@
-import { Route, Redirect } from "react-router-dom";
-import React, { Component } from "react";
-// Hannah: added import to pass props to task components:
+import { Route, Redirect } from "react-router-dom"
+import React, { Component } from "react"
+import NewsList from "./news/NewsList"
+import NewsForm from "./news/NewsForm"
+import NewsEditForm from "./news/NewsEditForm"
+import NewsManager from "./news/NewsManager"
 import TaskManager from "./todo/TaskManager";
 import TaskList from "./todo/TaskList";
 import EventsList from "./events/EventsList";
@@ -9,20 +12,45 @@ import EditEventForm from "./events/EditEventForm";
 import EventsManager from "./events/EventsManager"
 
 export default class ApplicationViews extends Component {
+  state = {
+    news: [],
+    tasks: [],
+    events: []
+   }
+   addNews = (article) =>{
+    NewsManager.post(article)
+      .then(() => NewsManager.getAll())
+      .then(news =>
+        this.setState({
+          news: news
+        })
+      )
+      }
 
-    state = {
-      events: [],
-      tasks: []
-    }
+      updateNews = (newsId, editedNewsObj) => {
+        return NewsManager.put(newsId, editedNewsObj)
+        .then(() => NewsManager.getAll())
+        .then(news => {
+          this.setState({
+            news: news
+          })
+        });
+      }
 
-  postEvent = (newEventObject) => EventsManager.post(newEventObject)
-  .then(() => EventsManager.getAll())
-  .then(event => this.setState({
-      events: event
-      })
-  )
+      postEvent = (newEventObject) => EventsManager.post(newEventObject)
+      .then(() => EventsManager.getAll())
+      .then(event => this.setState({
+          events: event
+          })
+      )
 
   componentDidMount() {
+
+    NewsManager.getAll().then(allNews => {
+      this.setState({
+        news: allNews
+      })
+    })
 
     EventsManager.getAll().then(allEvents => {
         this.setState({
@@ -37,15 +65,23 @@ export default class ApplicationViews extends Component {
     })
 }
 
-
   render() {
     return (
       <React.Fragment>
 
         <Route
           exact path="/" render={props => {
-            return null
-            // Remove null and return the component which will show news articles
+            return ( <NewsList  news={this.state.news} /> )
+          }}
+        />
+        <Route
+          path="/new" render={props => {
+            return ( <NewsForm {...props} updateNews={this.updateNews} news={this.state.news} /> )
+          }}
+        />
+        <Route
+          path="/news/:newsId(\d+)/edit" render={props => {
+            return <NewsEditForm {...props} updateNews={this.updateNews}/>
           }}
         />
 
