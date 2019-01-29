@@ -2,7 +2,7 @@ import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 // Hannah: added import to pass props to task components:
 import TaskManager from "./todo/TaskManager";
-
+import TaskList from "./todo/TaskList";
 import EventsList from "./events/EventsList";
 import NewEventForm from "./events/NewEventForm";
 import EditEventForm from "./events/EditEventForm";
@@ -16,16 +16,17 @@ state = {
 
 //=============================================   Tasks Hook  ===============================================================
 
-// componentDidMount() {
-//   const newTaskState = {
-//     TaskManager.getAll()
-//     .then(allTasks => {
-//       this.setState({
-//         tasks: allTasks
-//       })
-//     })
-//   }
-// }
+componentDidMount() {
+    TaskManager.getAll().then(allTasks => {
+      this.setState({
+        tasks: allTasks
+      })
+    })
+
+        //Other "Manager" components here
+
+  }
+
 //============================================================================================================
 
   render() {
@@ -53,13 +54,12 @@ state = {
           }}
         />
 
-        <Route
-          path="/tasks" render={props => {
-            return null
-            // <TaskList tasks={this.state.tasks} />
-          }}
+        <Route path="/tasks" render={props => {
+          return(<TaskList {...props} todos={this.state.tasks}/>
+          );
+        }}
         />
-        <Route
+          <Route
         exact path="/events" render={props => {
             return <EventsList />
           }}
