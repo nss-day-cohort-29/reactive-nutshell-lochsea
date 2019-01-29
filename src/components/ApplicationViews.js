@@ -44,6 +44,16 @@ export default class ApplicationViews extends Component {
           })
       )
 
+      updateEvent = (eventId, editedEventObject) => {
+        return EventsManager.post(eventId, editedEventObject)
+        .then(() => EventsManager.getAll())
+        .then(event => {
+          this.setState({
+            events: event
+          })
+        });
+      }
+
   componentDidMount() {
 
     NewsManager.getAll().then(allNews => {
@@ -117,8 +127,8 @@ export default class ApplicationViews extends Component {
           />
 
         <Route
-        path="/events/edit" render={props => {
-            return ( <EditEventForm {...props} /> )
+        path="/events/:eventId(\d+)/edit" render={props => {
+            return ( <EditEventForm {...props} updateEvent = {this.updateEvent} /> )
           }}
         />
       </React.Fragment>

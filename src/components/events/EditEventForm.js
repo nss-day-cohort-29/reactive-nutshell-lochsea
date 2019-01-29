@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import "./Events.css"
+import EventsManager from "../events/EventsManager"
 
 export default class EditEventForm extends Component {
     // Set initial state
@@ -15,25 +16,28 @@ export default class EditEventForm extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-
-    /*
-        Local method for validation, creating animal object, and
-        invoking the function reference passed from parent component
-     */
-    editEvent = evt => {
+    updateExistingStudent = evt => {
         evt.preventDefault()
-        if (this.state.events === "") {
-            window.alert("Please complete all fields")
-        } else {
-            const editedEventObject = {
-                name: this.state.eventName,
-                date: this.state.eventDate,
-                location: this.state.eventLocation
-            }
-            console.log("test object creation", editedEventObject)
-            // Create the event and redirect user to event list
-            // this.props.addEvent(editedEventObject).then(() => this.props.history.push("/events"))
+
+        const editedEventObject = {
+            name: this.state.eventName,
+            date: this.state.eventDate,
+            location: this.state.eventLocation
         }
+
+    this.props.updateEvent(this.props.match.params.eventId, editedEventObject)
+    .then(() => this.props.history.push("/events"))
+    }
+
+    componentDidMount() {
+    EventsManager.getEvent(this.props.match.params.eventId)
+    .then(event => {
+        this.setState({
+        name: event.name,
+        date: event.date,
+        location: event.location
+        });
+    });
     }
 
     render() {
@@ -63,7 +67,7 @@ export default class EditEventForm extends Component {
                                onChange={this.handleFieldChange}
                                id="eventLocation" placeholder="Location" />
                     </div>
-                    <button type="submit" onClick={this.editEvent}  className="btn btn--event--submit">Submit</button>
+                    <button type="submit" onClick={this.editedEventObject}  className="btn btn--event--submit">Submit</button>
                 </form>
             </React.Fragment>
         )
