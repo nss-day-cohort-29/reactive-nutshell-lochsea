@@ -17,25 +17,15 @@ state = {
 //=============================================   Tasks Hook  ===============================================================
 
 // componentDidMount() {
-//     const newState = {}
-
-// Example code. Make this fit into how you have written yours.
-// AnimalManager.getAll().then(allAnimals => {
-//     this.setState({
-//         animals: allAnimals
+//   const newTaskState = {
+//     TaskManager.getAll()
+//     .then(allTasks => {
+//       this.setState({
+//         tasks: allTasks
+//       })
 //     })
-// })
-
-componentDidMount() {
-  const newTaskState = {
-    TaskManager.getAll()
-    .then(allTasks => {
-      this.setState({
-        tasks: allTasks
-      })
-    })
-  }
-}
+//   }
+// }
 //============================================================================================================
 
   render() {
@@ -65,7 +55,8 @@ componentDidMount() {
 
         <Route
           path="/tasks" render={props => {
-            return <TaskList tasks={this.state.tasks} />
+            return null
+            // <TaskList tasks={this.state.tasks} />
           }}
         />
         <Route
