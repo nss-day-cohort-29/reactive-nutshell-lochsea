@@ -6,7 +6,7 @@ export default {
     },
 
     post(newEventObject) {
-        return fetch(`${remoteURL}/animals`, {
+        return fetch(`${remoteURL}/events`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
