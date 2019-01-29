@@ -1,3 +1,7 @@
 .btn {
     border: 1px solid gray
 }
+
+.event--entry{
+    border: 2px solid red
+}

@@ -32,7 +32,7 @@ export default class NewEventForm extends Component {
             }
             console.log("test object creation", createEventObject)
             // Create the event and redirect user to event list
-            // this.props.addEvent(createEventObject).then(() => this.props.history.push("/events"))
+            this.props.postEvent(createEventObject).then(() => this.props.history.push("/events"))
         }
     }
 
