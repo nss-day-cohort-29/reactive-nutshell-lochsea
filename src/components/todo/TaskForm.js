@@ -38,6 +38,10 @@ render() {
                     <label htmlFor="taskDescription">Task Description</label>
                     <input type="text" required className="task-form-input" id="taskDesc" placeholder="Describe Task"/>
                 </div>
+                <div>
+                    <label htmlFor="taskDate">When Do You Expect This Task To Be Finished?</label>
+                    <input type="date" required className="task-form-date" id="taskDueDate"/>
+                </div>
                 <button type="submit" onClick={this.createNewTask} className="task-form-submit-btn">Submit</button>
             </form>
         </React.Fragment>

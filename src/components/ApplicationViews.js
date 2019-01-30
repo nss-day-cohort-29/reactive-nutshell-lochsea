@@ -119,7 +119,7 @@ export default class ApplicationViews extends Component {
         />
 
         <Route path="/tasks/new" render={props => {
-    return( < TaskForm {...props} addTask={this.addTask} addTaskName={this.addTaskName}/>
+    return( < TaskForm {...props} addTask={this.addTask}/>
       )
         }}
         />
