@@ -1,23 +1,25 @@
 import React, { Component } from "react"
 import "./Events.css"
+import { Link } from "react-router-dom";
 
 export default class EventCard extends Component {
     render() {
         return (
-            <div key={this.props.event.id} className="event--id">
+            <div key={this.props.eventItem.id} className="event--id">
                 <div className="event--entry">
                     <h2 className="event--name" label="Event">
-                        {this.props.event.name}
+                        {this.props.eventItem.name}
                     </h2>
                     <p className="event--date" label="Date">
-                        {this.props.event.date}
+                        {this.props.eventItem.date}
                     </p>
                     <p className="event--location" label="Location">
-                        {this.props.event.location}
+                        {this.props.eventItem.location}
                     </p>
-                    <button type="edit" onClick={this.constructNewEvent} className="btn btn--event--edit">Submit</button>
+
                     {/* onClick={() => this.props.deleteAnimal(this.props.animal.id)}
                             className="card-link">Discharge</a> */}
+                    <Link className="nav-link" to={`/events/${this.props.eventItem.id}/edit`}>Edit</Link>
                 </div>
             </div>
         )

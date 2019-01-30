@@ -16,5 +16,13 @@ export default {
       },
       body: JSON.stringify(newArticle)
     }).then(data => data.json())
-  }
+  },
+  put(eventId, eventObject) {
+    return fetch(`${remoteURL}/students/${eventId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }
+  )}
 }

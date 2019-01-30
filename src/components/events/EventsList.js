@@ -9,7 +9,7 @@ export default class EventsList extends Component {
             <div className="eventsContainer">
             {
                 this.props.events.map(event =>
-                <EventCard key={event.id} event={event} {...this.props} />
+                <EventCard key={event.id} eventItem={event} {...this.props} />
                 )
             }
             </div>
