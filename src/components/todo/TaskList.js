@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-// import TaskCard from "./TaskCard"
+import TaskCard from "./TaskCard"
 // todos is: {ApplicationViews.state.tasks}
 class TaskList extends Component {
     render() {
@@ -7,11 +7,12 @@ class TaskList extends Component {
         return(
             this.props.todos.map(chores =>
             <div key={chores.id}>
-                  <div className="card-body">
+                < TaskCard key={chores.id} task={chores.task} taskName={chores.taskName} {...this.props}/>
+                  {/* <div className="card-body">
                       <h5 className="card-title">
                           {chores.task}
                       </h5>
-                    </div>
+                    </div> */}
             </div>
         ))
     }
