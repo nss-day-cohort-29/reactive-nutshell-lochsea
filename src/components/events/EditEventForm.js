@@ -23,7 +23,8 @@ export default class EditEventForm extends Component {
         const editedEventObject = {
             name: this.state.eventName,
             date: this.state.eventDate,
-            location: this.state.eventLocation
+            location: this.state.eventLocation,
+            userId: " "
         }
     this.props.updateEvent(this.props.match.params.eventId, editedEventObject)
     .then(() => this.props.history.push("/events"))
@@ -36,7 +37,8 @@ export default class EditEventForm extends Component {
         this.setState({
         eventName: event.name,
         eventDate: event.date,
-        eventLocation: event.location
+        eventLocation: event.location,
+        userId: event.userId
         });
     });
     }
