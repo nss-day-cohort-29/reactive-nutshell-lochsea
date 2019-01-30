@@ -4,7 +4,8 @@ export default class TaskForm extends Component {
 
     state = {
         taskName: "",
-        task: ""
+        task: "",
+        taskDate: ""
     };
 
     // Create a new task object:
@@ -13,6 +14,7 @@ export default class TaskForm extends Component {
         const newTask = {
             name: this.state.taskName,
             task: this.state.task,
+            date: this.state.taskDate,
             //Connect the right task with the right id:
             taskId: this.props.task.find(
                 task => task.taskName === this.state.task).id

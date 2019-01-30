@@ -13,11 +13,18 @@ class TaskList extends Component {
             //Log "todos" to the console to see what it gives us:
             // console.log(this.props.todos)
         return(
-            this.props.todos.map(chores =>
-            <div key={chores.id}>
-                < TaskCard key={chores.id} task={chores.task} taskName={chores.taskName} taskDate={chores.taskDate} {...this.props}/>
-            </div>
-        ))
+
+            <React.Fragment>
+
+            <section>
+                {this.props.todos.map(chores =>
+                <div key={chores.id}>
+                    < TaskCard key={chores.id} task={chores.task} taskName={chores.taskName} taskDate={chores.taskDate} {...this.props}/>
+                </div>
+                )}
+        </section>
+        </React.Fragment>
+        )
     }
 }
 export default TaskList
