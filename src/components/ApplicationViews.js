@@ -46,7 +46,6 @@ export default class ApplicationViews extends Component {
           })
       )
 
-<<<<<<< HEAD
       addTask = (taskItem) => {
         TaskManager.post(taskItem)
           .then(() => TaskManager.getAll())
@@ -56,7 +55,6 @@ export default class ApplicationViews extends Component {
             })
           )
         }
-=======
       updateEvent = (eventId, editedEventObject) => {
         return EventsManager.put(eventId, editedEventObject)
         .then(() => EventsManager.getAll())
@@ -75,7 +73,6 @@ export default class ApplicationViews extends Component {
         }))
     }
 
->>>>>>> master
   componentDidMount() {
 
     NewsManager.getAll().then(allNews => {
