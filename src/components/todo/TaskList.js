@@ -15,19 +15,24 @@ class TaskList extends Component {
         return(
 
             <React.Fragment>
+
                 <div>
                     {
                     this.props.todos.map(chores =>
-                    < TaskCard key={chores.id} task={chores.task} taskName={chores.taskName} taskDate={chores.taskDate} {...this.props}/>
+                    < TaskCard key={chores.id} task={chores.id}
+                    // taskName={chores.taskName} taskDate={chores.taskDate}
+                    {...this.props}/>
                     )}
                 </div>
+
                     <div className="addNewTask">
                     <button type="button"
                         className="add-new-task-btn"
                         onClick={() => {
                             console.log(this.props)
                             this.props.history.push("/tasks/new")
-                            }}>
+                            }}
+                            >
                         Add New Task
                     </button>
                 </div>

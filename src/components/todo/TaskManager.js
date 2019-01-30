@@ -14,7 +14,15 @@ export default {
   getAll() {
     return fetch(taskRemoteURL).then(t => t.json())
   },
-
-}
+  post(newTask) {
+    return fetch(`${taskRemoteURL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTask)
+    }).then(data => data.json());
+  }
+};
 // componentDidMount() is in AppViews because state is also in AppViews!
 //============================================================================================================

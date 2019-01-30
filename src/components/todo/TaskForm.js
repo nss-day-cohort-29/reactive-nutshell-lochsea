@@ -16,13 +16,15 @@ export default class TaskForm extends Component {
             task: this.state.task,
             date: this.state.taskDate,
             //Connect the right task with the right id:
-            taskId: this.props.task.find(
-                task => task.taskName === this.state.task).id
+            // taskId: this.props.task.find(
+            //     newTaskItem => newTaskItem.name === this.state.task).id
+            taskId: this.state.task.id
         };
 
+        this.props.addTask()
         // Redirect user to TaskList:
-        this.props.addTask(newTask)
-        .then(() => this.props.history.push("/tasks"));
+        // this.props.post(newTask)
+        // .then(() => this.props.history.push("/tasks"));
     }
 
 render() {

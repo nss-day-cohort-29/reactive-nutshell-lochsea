@@ -46,12 +46,12 @@ export default class ApplicationViews extends Component {
           })
       )
 
-      addTask = (taskItem) => {
-        TaskManager.post(taskItem)
+      addTask = (taskItems) => {
+        TaskManager.post(taskItems)
           .then(() => TaskManager.getAll())
-          .then(taskItem =>
+          .then(taskItems =>
             this.setState({
-              tasks: taskItem
+              tasks: taskItems
             })
           )
         }
