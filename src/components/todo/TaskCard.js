@@ -1,17 +1,21 @@
-// import React, { Component } from "react"
+import React, { Component } from "react"
+// import { Link } from "react-router-dom";
 
-// class TaskCard extends Component {
-//     render() {
-//         // console.log(this.props);
-//         return (
-//             <div key={this.props.chores.id} className="card">
-//                 <div className="card-body">
-//                     <h5 ClassName="card-header">{this.props.chores}</h5>
-//                     {/* {this.props.task.task} */}
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
+export default class TaskCard extends Component {
+    render() {
+        // console.log(this.props);
+        return (
+            <div key={this.props.task.id} className="card-body">
+                    <div className="card-content">
+                    <h5 className="card-header">{this.props.taskName}</h5>
+                     {this.props.task}
+                     </div>
+                     <div className="card-buttons">
+                        Coming soon: details and edit
+                     </div>
+             </div>
+        )
+    }
+}
 
-// export default TaskCard
+// "task" on line 8 here is created as a new prop from "chores.task" on line 12 of TaskCard.

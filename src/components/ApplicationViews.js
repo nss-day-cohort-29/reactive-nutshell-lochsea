@@ -103,7 +103,7 @@ export default class ApplicationViews extends Component {
 
         <Route path="/tasks" render={props => {
           return( <TaskList {...props} todos={this.state.tasks}/>
-          )
+            )
         }}
         />
           <Route
