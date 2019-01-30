@@ -5,6 +5,7 @@ export default class TaskCard extends Component {
     render() {
         // console.log(this.props);
         return (
+            <React.Fragment>
             <div key={this.props.task.id} className="card-body">
                     <div className="card-content">
                     <h5 className="card-header">{this.props.taskName}</h5>
@@ -17,6 +18,10 @@ export default class TaskCard extends Component {
                         Coming soon: details and edit
                      </div>
              </div>
+             <div>
+                 <button type="submit" className="add-task-btn">Create New Task!</button>
+             </div>
+             </React.Fragment>
         )
     }
 }
