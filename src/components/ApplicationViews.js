@@ -60,10 +60,10 @@ export default class ApplicationViews extends Component {
 
     TaskManager.getAll().then(allTasks => {
       this.setState({
-        tasks: allTasks
+        task: allTasks
       })
     })
-}
+  }
 
   render() {
     return (
