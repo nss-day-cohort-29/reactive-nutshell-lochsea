@@ -6,7 +6,7 @@ export default class NewEventForm extends Component {
     state = {
         eventName: "",
         eventDate: "",
-        eventLocation: ""
+        eventLocation: "",
     }
 
     // Update state whenever an input field is edited
@@ -28,9 +28,10 @@ export default class NewEventForm extends Component {
             const createEventObject = {
                 name: this.state.eventName,
                 date: this.state.eventDate,
-                location: this.state.eventLocation
+                location: this.state.eventLocation,
+                userId: 99
             }
-            console.log("test object creation", createEventObject)
+            // console.log("test object creation", createEventObject)
             // Create the event and redirect user to event list
             this.props.postEvent(createEventObject).then(() => this.props.history.push("/events"))
         }

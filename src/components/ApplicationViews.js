@@ -40,10 +40,28 @@ export default class ApplicationViews extends Component {
 
       postEvent = (newEventObject) => EventsManager.post(newEventObject)
       .then(() => EventsManager.getAll())
-      .then(event => this.setState({
-          events: event
+      .then(events => this.setState({
+          events: events
           })
       )
+
+      updateEvent = (eventId, editedEventObject) => {
+        return EventsManager.put(eventId, editedEventObject)
+        .then(() => EventsManager.getAll())
+        .then(events => {
+          this.setState({
+            events: events
+          })
+        });
+      }
+
+      deleteEvent = (id) => {
+        return EventsManager.removeAndList(id)
+        .then(() => EventsManager.getAll())
+        .then(events => this.setState({
+            events: events
+        }))
+    }
 
   componentDidMount() {
 
@@ -119,8 +137,8 @@ export default class ApplicationViews extends Component {
           />
 
         <Route
-        path="/events/edit" render={props => {
-            return ( <EditEventForm {...props} /> )
+        path="/events/:eventId(\d+)/edit" render={props => {
+            return ( <EditEventForm {...props} updateEvent = {this.updateEvent} deleteEvent = {this.deleteEvent} /> )
           }}
         />
       </React.Fragment>
