@@ -18,28 +18,29 @@ export default class TaskForm extends Component {
                 task => task.taskName === this.state.task).id
         };
 
+        // Redirect user to TaskList:
         this.props.addTask(newTask)
         .then(() => this.props.history.push("/tasks"));
     }
 
 render() {
-    return(
-    // create form elements
-    <React.Fragment>
-        <form className="task-form">
-            <div>
-                <label htmlFor="taskName">
-                    Task Name
-                </label>
-                <input type="text" required className="task-form-input" id="taskName" placeholder="Task Name"/>
-            </div>
-            <div>
-                <label htmlFor="taskDescription">Task Description</label>
-                <input type="text" required className="task-form-input" id="taskDesc" placeholder="Describe Task"/>
-            </div>
-            <button>Submit</button>
-        </form>
-    </React.Fragment>
-    )
-}
+        return(
+        // create form elements
+        <React.Fragment>
+            <form className="task-form">
+                <div>
+                    <label htmlFor="taskName">
+                        Task Name
+                    </label>
+                    <input type="text" required className="task-form-input" id="taskName" placeholder="Task Name"/>
+                </div>
+                <div>
+                    <label htmlFor="taskDescription">Task Description</label>
+                    <input type="text" required className="task-form-input" id="taskDesc" placeholder="Describe Task"/>
+                </div>
+                <button type="submit" onClick={this.createNewTask} className="task-form-submit-btn">Submit</button>
+            </form>
+        </React.Fragment>
+        );
+    }
 }

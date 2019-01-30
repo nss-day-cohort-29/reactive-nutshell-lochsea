@@ -13,7 +13,8 @@ export default {
   },
   getAll() {
     return fetch(taskRemoteURL).then(t => t.json())
-  }
+  },
+  
 }
 // componentDidMount() is in AppViews because state is also in AppViews!
 //============================================================================================================

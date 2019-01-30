@@ -6,6 +6,7 @@ import NewsEditForm from "./news/NewsEditForm"
 import NewsManager from "./news/NewsManager"
 import TaskManager from "./todo/TaskManager";
 import TaskList from "./todo/TaskList";
+import TaskForm from "./todo/TaskForm";
 import EventsList from "./events/EventsList";
 import NewEventForm from "./events/NewEventForm";
 import EditEventForm from "./events/EditEventForm";
@@ -45,6 +46,15 @@ export default class ApplicationViews extends Component {
           })
       )
 
+      addTask = (taskItem) => {
+        TaskManager.post(taskItem)
+          .then(() => TaskManager.getAll())
+          .then(taskItem =>
+            this.setState({
+              tasks: taskItem
+            })
+          )
+        }
   componentDidMount() {
 
     NewsManager.getAll().then(allNews => {
@@ -65,6 +75,7 @@ export default class ApplicationViews extends Component {
         tasks: allTasks
       })
     })
+
   }
 
   render() {
@@ -104,6 +115,12 @@ export default class ApplicationViews extends Component {
         <Route path="/tasks" render={props => {
           return( <TaskList {...props} todos={this.state.tasks}/>
             )
+        }}
+        />
+
+        <Route path="/tasks/new" render={props => {
+    return( < TaskForm {...props} addTask={this.addTask} addTaskName={this.addTaskName}/>
+      )
         }}
         />
           <Route
