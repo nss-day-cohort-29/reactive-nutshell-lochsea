@@ -17,6 +17,7 @@ export default class ApplicationViews extends Component {
     tasks: [],
     events: []
    }
+
    addNews = (article) =>{
     NewsManager.post(article)
       .then(() => NewsManager.getAll())
@@ -59,11 +60,12 @@ export default class ApplicationViews extends Component {
     })
 
     TaskManager.getAll().then(allTasks => {
+      // console.log(allTasks);   Logs the database "tasks" array to the console.
       this.setState({
         tasks: allTasks
       })
     })
-}
+  }
 
   render() {
     return (
