@@ -9,6 +9,9 @@ export default class TaskCard extends Component {
                     <div className="card-content">
                     <h5 className="card-header">{this.props.taskName}</h5>
                      {this.props.task}
+                        <div className="task-card-date">
+                        {this.props.taskDate}
+                        </div>
                      </div>
                      <div className="card-buttons">
                         Coming soon: details and edit

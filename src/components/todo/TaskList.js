@@ -7,12 +7,7 @@ class TaskList extends Component {
         return(
             this.props.todos.map(chores =>
             <div key={chores.id}>
-                < TaskCard key={chores.id} task={chores.task} taskName={chores.taskName} {...this.props}/>
-                  {/* <div className="card-body">
-                      <h5 className="card-title">
-                          {chores.task}
-                      </h5>
-                    </div> */}
+                < TaskCard key={chores.id} task={chores.task} taskName={chores.taskName} taskDate={chores.taskDate} {...this.props}/>
             </div>
         ))
     }
