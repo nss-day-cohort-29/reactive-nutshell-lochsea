@@ -27,5 +27,10 @@ export default {
         },
         body: JSON.stringify(eventObject)
       }).then(data => data.json());
-      }
+      },
+      removeAndList(id) {
+        return fetch(`${remoteURL}/events/${id}`, {
+            method: "DELETE"
+        })
+      },
   }

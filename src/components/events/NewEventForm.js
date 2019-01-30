@@ -29,6 +29,7 @@ export default class NewEventForm extends Component {
                 name: this.state.eventName,
                 date: this.state.eventDate,
                 location: this.state.eventLocation,
+                userId: 99
             }
             // console.log("test object creation", createEventObject)
             // Create the event and redirect user to event list

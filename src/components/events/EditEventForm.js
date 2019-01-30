@@ -24,7 +24,7 @@ export default class EditEventForm extends Component {
             name: this.state.eventName,
             date: this.state.eventDate,
             location: this.state.eventLocation,
-            userId: " "
+            userId: this.state.userId
         }
     this.props.updateEvent(this.props.match.params.eventId, editedEventObject)
     .then(() => this.props.history.push("/events"))
@@ -33,7 +33,7 @@ export default class EditEventForm extends Component {
     //component which calls my fetch module
     componentDidMount() {
     EventsManager.getEvent(this.props.match.params.eventId)
-    .then(event => {
+    .then(event => { console.log(event)
         this.setState({
         eventName: event.name,
         eventDate: event.date,
@@ -73,6 +73,7 @@ export default class EditEventForm extends Component {
                                value={this.state.eventLocation} />
                     </div>
                     <button type="submit" onClick={this.updateExistingEvent}  className="btn btn--event--submit">Submit</button>
+                    {/* <button type="delete" onClick={this.props.deleteEvent(this.props.match.params.eventId)}  className="btn btn--event--delete">Delete</button> */}
                 </form>
             </React.Fragment>
         )

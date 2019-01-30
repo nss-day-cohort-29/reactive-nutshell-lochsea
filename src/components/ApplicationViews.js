@@ -55,6 +55,14 @@ export default class ApplicationViews extends Component {
         });
       }
 
+      deleteEvent = (id) => {
+        return EventsManager.removeAndList(id)
+        .then(() => EventsManager.getAll())
+        .then(events => this.setState({
+            events: events
+        }))
+    }
+
   componentDidMount() {
 
     NewsManager.getAll().then(allNews => {
@@ -130,7 +138,7 @@ export default class ApplicationViews extends Component {
 
         <Route
         path="/events/:eventId(\d+)/edit" render={props => {
-            return ( <EditEventForm {...props} updateEvent = {this.updateEvent} /> )
+            return ( <EditEventForm {...props} updateEvent = {this.updateEvent} deleteEvent = {this.deleteEvent} /> )
           }}
         />
       </React.Fragment>
