@@ -7,7 +7,7 @@ export default class TaskCard extends Component {
         return (
             <div key={this.props.task.id} className="card-body">
                     <div className="card-content">
-                    <h5 ClassName="card-header">{this.props.taskName}</h5>
+                    <h5 className="card-header">{this.props.taskName}</h5>
                      {this.props.task}
                      </div>
                      <div className="card-buttons">
