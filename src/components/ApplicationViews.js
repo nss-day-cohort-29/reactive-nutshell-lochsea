@@ -39,17 +39,17 @@ export default class ApplicationViews extends Component {
 
       postEvent = (newEventObject) => EventsManager.post(newEventObject)
       .then(() => EventsManager.getAll())
-      .then(event => this.setState({
-          events: event
+      .then(events => this.setState({
+          events: events
           })
       )
 
       updateEvent = (eventId, editedEventObject) => {
-        return EventsManager.post(eventId, editedEventObject)
+        return EventsManager.put(eventId, editedEventObject)
         .then(() => EventsManager.getAll())
-        .then(event => {
+        .then(events => {
           this.setState({
-            events: event
+            events: events
           })
         });
       }

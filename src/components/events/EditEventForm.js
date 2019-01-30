@@ -16,7 +16,8 @@ export default class EditEventForm extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-    updateExistingStudent = evt => {
+    //object to replace the one being edited
+    updateExistingEvent = evt => {
         evt.preventDefault()
 
         const editedEventObject = {
@@ -24,23 +25,23 @@ export default class EditEventForm extends Component {
             date: this.state.eventDate,
             location: this.state.eventLocation
         }
-
     this.props.updateEvent(this.props.match.params.eventId, editedEventObject)
     .then(() => this.props.history.push("/events"))
     }
 
+    //component which calls my fetch module
     componentDidMount() {
     EventsManager.getEvent(this.props.match.params.eventId)
     .then(event => {
         this.setState({
-        name: event.name,
-        date: event.date,
-        location: event.location
+        eventName: event.name,
+        eventDate: event.date,
+        eventLocation: event.location
         });
     });
     }
 
-    render() {
+    render() { console.log(this.props)
         return (
             <React.Fragment>
                 <form className="eventForm">
@@ -51,23 +52,25 @@ export default class EditEventForm extends Component {
                                className="form-control"
                                onChange={this.handleFieldChange}
                                id="eventName"
-                               placeholder="Event Name" />
+                               value={this.state.eventName} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="eventDate">Date</label>
                         <input type="text" required
                                className="form-control"
                                onChange={this.handleFieldChange}
-                               id="eventDate" placeholder="Date" />
+                               id="eventDate"
+                               value={this.state.eventDate} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="eventLocation">Location</label>
                         <input type="text" required
                                className="form-control"
                                onChange={this.handleFieldChange}
-                               id="eventLocation" placeholder="Location" />
+                               id="eventLocation"
+                               value={this.state.eventLocation} />
                     </div>
-                    <button type="submit" onClick={this.editedEventObject}  className="btn btn--event--submit">Submit</button>
+                    <button type="submit" onClick={this.updateExistingEvent}  className="btn btn--event--submit">Submit</button>
                 </form>
             </React.Fragment>
         )
