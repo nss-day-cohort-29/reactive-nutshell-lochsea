@@ -73,7 +73,7 @@ export default class EditEventForm extends Component {
                                value={this.state.eventLocation} />
                     </div>
                     <button type="submit" onClick={this.updateExistingEvent}  className="btn btn--event--submit">Submit</button>
-                    {/* <button type="delete" onClick={this.props.deleteEvent(this.props.match.params.eventId)}  className="btn btn--event--delete">Delete</button> */}
+                    <button type="delete" onClick={ () => {this.props.deleteEvent(this.props.match.params.eventId); this.props.history.push("/events")}}className="btn btn--event--delete">Delete</button>
                 </form>
             </React.Fragment>
         )
