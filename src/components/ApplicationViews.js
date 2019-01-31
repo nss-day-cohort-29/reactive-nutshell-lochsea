@@ -55,6 +55,22 @@ export default class ApplicationViews extends Component {
             })
           )
         }
+
+      deleteTask = (id) => {
+        return fetch (`remoteURL/${id}`, {
+          method: "DELETE"
+          })
+          .then(response => response.json())
+          .then(() => fetch(`remoteURL`))
+          .then(response => response.json())
+          .then(deleteTask => {
+            this.setState({
+              tasks: deleteTask
+            })
+          }
+        )
+      }
+
       updateEvent = (eventId, editedEventObject) => {
         return EventsManager.put(eventId, editedEventObject)
         .then(() => EventsManager.getAll())
@@ -137,10 +153,11 @@ export default class ApplicationViews extends Component {
         />
 
         <Route path="/tasks/new" render={props => {
-    return( < TaskForm {...props} addTask={this.addTask}/>
+    return( < TaskForm {...props} addTask={this.addTask} deleteTask={this.deleteTask}/>
       )
         }}
         />
+
           <Route
         exact path="/events" render={props => {
             return ( <EventsList {...props} events = {this.state.events} /> )

@@ -6,12 +6,12 @@ export default class TaskCard extends Component {
         // console.log(this.props);
         return (
             <React.Fragment>
-            <div key={this.props.task} className="card-body">
+            <div className="card-body">
                     <div className="card-content">
-                    <h5 className="card-header">{this.props.taskName}</h5>
-                     {this.props.task}
+                    <h5 className="card-header">{this.props.task.taskName}</h5>
+                     {this.props.task.task}
                         <div className="task-card-date">
-                        {this.props.taskDate}
+                        {this.props.task.taskDate}
                         </div>
                      </div>
                      <div className="card-buttons">
