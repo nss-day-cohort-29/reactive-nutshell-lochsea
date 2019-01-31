@@ -8,23 +8,28 @@ export default class TaskForm extends Component {
         taskDate: ""
     };
 
+    handleTaskField = evt => {
+        const taskStateToChange = {};
+        console.log(evt.target.id, evt.target.value);   //This will show in the console what the user is typing in the form fields
+        taskStateToChange[evt.target.id] = evt.target.value;
+        this.setState(taskStateToChange);
+    }
+
     // Create a new task object:
     createNewTask = evt => {
         evt.preventDefault();
         const newTask = {
-            name: this.state.taskName,
+            taskName: this.state.taskName,
             task: this.state.task,
-            date: this.state.taskDate,
+            taskDate: this.state.taskDate,
             //Connect the right task with the right id:
             // taskId: this.props.task.find(
             //     newTaskItem => newTaskItem.name === this.state.task).id
-            taskId: this.state.task.id
+            // taskId: this.state.task.id
         };
 
-        this.props.addTask()
-        // Redirect user to TaskList:
-        // this.props.post(newTask)
-        // .then(() => this.props.history.push("/tasks"));
+        this.props.addTask(newTask).then(() => this.props.history.push("/tasks"));
+        // Redirect user to TaskList
     }
 
 render() {
@@ -36,15 +41,15 @@ render() {
                     <label htmlFor="taskName">
                         Task Name
                     </label>
-                    <input type="text" required className="task-form-input" id="taskName" placeholder="Task Name"/>
+                    <input type="text" required className="task-form-input" id="taskName" placeholder="Task Name" onChange={this.handleTaskField}/>
                 </div>
                 <div>
                     <label htmlFor="taskDescription">Task Description</label>
-                    <input type="text" required className="task-form-input" id="taskDesc" placeholder="Describe Task"/>
+                    <input type="text" required className="task-form-input" id="task" placeholder="Describe Task" onChange={this.handleTaskField}/>
                 </div>
                 <div>
                     <label htmlFor="taskDate">When Do You Expect This Task To Be Finished?</label>
-                    <input type="date" required className="task-form-date" id="taskDueDate"/>
+                    <input type="date" required className="task-form-date" id="taskDate" onChange={this.handleTaskField}/>
                 </div>
                 <button type="submit" onClick={this.createNewTask} className="task-form-submit-btn">Submit</button>
             </form>
