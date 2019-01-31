@@ -16,7 +16,8 @@ export default class ApplicationViews extends Component {
   state = {
     news: [],
     tasks: [],
-    events: []
+    events: [],
+    users: []
    }
 
    addNews = (article) =>{
@@ -143,7 +144,7 @@ export default class ApplicationViews extends Component {
         />
           <Route
         exact path="/events" render={props => {
-            return ( <EventsList {...props} events = {this.state.events} /> )
+            return ( <EventsList {...props} events = {this.state.events} users = {this.state.users} /> )
           }}
           />
 
