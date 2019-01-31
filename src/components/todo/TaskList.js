@@ -12,7 +12,7 @@ class TaskList extends Component {
             // "task={chores.id}" is essentially:
                 //TaskList.properties.AppViews.state.tasks.map
                 // Since state in AppViews is state = { tasks: [] }, the map becomes:
-                // TaskList.properties.AppViews.state.tasks.map = state: {chores: [{id: "", name: "", etc.}]}
+                // TaskList.properties.AppViews.state.tasks.map = state: {tasks: [chores= {id: "", name: "", etc.}]}
                 // This matches the array in db.json: {tasks: [{id: "", name: "", etc.}]}
                 // The only difference is that I refer to it here as "chores" to differentiate the manipulation and passage of "tasks" in this component from all other potential instances of "task" or "tasks"
         return(
@@ -21,11 +21,11 @@ class TaskList extends Component {
 
                 <div>
                     {
-                    this.props.todos.map(chores =>
-                    < TaskCard key={chores.id} task={chores.id}
-                    // taskName={chores.taskName} taskDate={chores.taskDate}
+                    this.props.todos.map(chore =>
+                    < TaskCard key={chore.id} task={chore}
                     {...this.props}/>
                     )}
+                    {/* {console.log(this.props.todos)} */}
                 </div>
 
                     <div className="addNewTask">
