@@ -5,9 +5,9 @@ export default {
   getEvent(id) {
     return fetch(`${remoteURL}/events/${id}`).then(e => e.json());
   },
-  //GET all objects
+  //GET all objects for a specific user. Change userId=1 to ${userId} when session storage exists
   getAll() {
-      return fetch(`${remoteURL}/events`).then(e => e.json())
+      return fetch(`${remoteURL}/events?_expand=user&userId=1`).then(e => e.json())
   },
   //POST a new object
   post(newEventObject) {

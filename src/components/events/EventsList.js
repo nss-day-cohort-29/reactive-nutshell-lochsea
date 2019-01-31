@@ -5,31 +5,30 @@ import EventCard from "./EventCard.js"
 export default class EventsList extends Component {
     render () {
 
-    this.props.events.sort(function(a,b) {return new Date(a.date) - new Date(b.date);
+        this.props.events.sort(function(a,b) {return new Date(a.date) - new Date(b.date);
         });
+            return (
+                <React.Fragment>
+                <div className="eventsContainer">
+                {
 
-        return (
-            <React.Fragment>
-            <div className="eventsContainer">
-            {
-
-            this.props.events.map(event =>
-                <EventCard key={event.id} eventItem={event} {...this.props} />
-                )
-            }
-            </div>
-            <div className="addEventButton">
-                    <button type="button"
-                            className="btn btn--event--submit"
-                            onClick={() => {
-                                console.log(this.props)
-                                this.props.history.push("/events/new")
-                            }
-                            }>
-                        Add Event
-                    </button>
+                    this.props.events.map(event =>
+                    <EventCard key={event.id} eventItem={event} {...this.props} />
+                    )
+                }
                 </div>
-            </React.Fragment>
-        );
+                <div className="addEventButton">
+                        <button type="button"
+                                className="btn btn--event--submit"
+                                onClick={() => {
+                                    console.log(this.props)
+                                    this.props.history.push("/events/new")
+                                }
+                                }>
+                            Add Event
+                        </button>
+                    </div>
+                </React.Fragment>
+            )
+        }
     }
-}
