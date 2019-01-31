@@ -4,11 +4,16 @@ import EventCard from "./EventCard.js"
 
 export default class EventsList extends Component {
     render () {
+
+    this.props.events.sort(function(a,b) {return new Date(a.date) - new Date(b.date);
+        });
+
         return (
             <React.Fragment>
             <div className="eventsContainer">
             {
-                this.props.events.map(event =>
+
+            this.props.events.map(event =>
                 <EventCard key={event.id} eventItem={event} {...this.props} />
                 )
             }
