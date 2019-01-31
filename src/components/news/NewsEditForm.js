@@ -25,7 +25,7 @@ export default class NewsEditForm extends Component {
       }
 
     this.props.updateNews(this.props.match.params.newsId, existingNews)
-    .then(() => this.props.history.push("/news"))      
+    .then(() => this.props.history.push("/"))      
     }
 
     componentDidMount() {
