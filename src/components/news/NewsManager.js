@@ -17,12 +17,18 @@ export default {
       body: JSON.stringify(newArticle)
     }).then(data => data.json())
   },
-  put(eventId, eventObject) {
-    return fetch(`${remoteURL}/students/${eventId}`, {
+  put(newsId, existingNews) {
+    return fetch(`${remoteURL}/news/${newsId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
-    }
-  )}
+      body: JSON.stringify(existingNews)
+    }).then(data => data.json());
+  },
+  removeAndListNews(id) {
+    return fetch(`${remoteURL}/news/${id}`, {
+        method: "DELETE"
+    })
+  }
 }

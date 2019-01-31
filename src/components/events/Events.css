@@ -3,5 +3,13 @@
 }
 
 .event--entry{
-    border: 2px solid red
+    border: 2px solid rgb(54, 52, 52)
 }
+
+.event--id:first-child{
+background-color: lavender;
+font-size: 1.5em;
+font-weight: bold
+}
+
+

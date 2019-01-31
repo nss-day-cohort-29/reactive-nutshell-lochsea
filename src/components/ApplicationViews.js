@@ -16,18 +16,27 @@ export default class ApplicationViews extends Component {
   state = {
     news: [],
     tasks: [],
-    events: []
+    events: [],
+    users: []
    }
 
    addNews = (article) =>{
-    NewsManager.post(article)
-      .then(() => NewsManager.getAll())
-      .then(news =>
-        this.setState({
-          news: news
-        })
-      )
+    return NewsManager.post(article)
+      // .then(() => NewsManager.getAll())
+      // .then(news =>
+      //   this.setState({
+      //     news: news
+      //   })
+      // )
       }
+
+      deleteNews = (id) => {
+        return NewsManager.removeAndListNews(id)
+        .then(() => NewsManager.getAll())
+        .then(news => this.setState({
+          news: news
+        }))
+    }
 
       updateNews = (newsId, editedNewsObj) => {
         return NewsManager.put(newsId, editedNewsObj)
@@ -118,12 +127,12 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            return ( <NewsList  news={this.state.news} /> )
+            return ( <NewsList {...props} deleteNews={this.deleteNews} news={this.state.news} /> )
           }}
         />
         <Route
           path="/new" render={props => {
-            return ( <NewsForm {...props} updateNews={this.updateNews} news={this.state.news} /> )
+            return ( <NewsForm {...props} addNews={this.addNews} /> )
           }}
         />
         <Route
@@ -160,7 +169,7 @@ export default class ApplicationViews extends Component {
 
           <Route
         exact path="/events" render={props => {
-            return ( <EventsList {...props} events = {this.state.events} /> )
+            return ( <EventsList {...props} events = {this.state.events} users = {this.state.users} /> )
           }}
           />
 

@@ -2,44 +2,45 @@ import React, { Component } from "react"
 
 export default class NewsForm extends Component {
   state = {
-   NewsTitle: "",
-   Synopsis: "",
-    URL: ""
+   title: "",
+   synopsis: "",
+    url: ""
   }
   handleFieldChange = (evt) => {
+    evt.preventDefault()
     const stateToChange = {}
-    console.log(evt.target.id, evt.target.value)
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
   }
   constructNews = (evt) => {
-      const newNews = {
-        NewsTitle: this.state.NewsTitle,
-        Synopsis: this.state.Synopsis,
-        URL: this.state.URL
-      }
-      this.props.addNews(newNews)
-        .then(() => this.props.history.push("/news"))
+    evt.preventDefault()
+    const newNews = {
+      title: this.state.title,
+      synopsis: this.state.synopsis,
+      url: this.state.url
     }
-  render() {
-    return (
+      this.props.addNews(newNews)
+        .then(() => this.props.history.push("/"))
+      }
+      render() {
+        return (
       <React.Fragment>
         <form>
           <div>
             <label htmlFor="newsTitle">News title</label>
-            <input type="text" required id="newsTitle"
+            <input type="text" required id="title"
              onChange={this.handleFieldChange}
             />
           </div>
           <div>
             <label htmlFor="Synopsis">Synopsis</label>
-            <input type="text" required id="Synopsis"
+            <input type="text" required id="synopsis"
              onChange={this.handleFieldChange}
             />
           </div>
           <div>
             <label htmlFor="URL">URL</label>
-            <input type="text" required id="URL"
+            <input type="text" required id="url"
              onChange={this.handleFieldChange}
             />
           </div>
