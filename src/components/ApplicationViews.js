@@ -63,9 +63,9 @@ export default class ApplicationViews extends Component {
           .then(response => response.json())
           .then(() => fetch(`remoteURL`))
           .then(response => response.json())
-          .then(oldTasks => {
+          .then(deleteTask => {
             this.setState({
-              tasks: oldTasks
+              tasks: deleteTask
             })
           }
         )
@@ -153,10 +153,11 @@ export default class ApplicationViews extends Component {
         />
 
         <Route path="/tasks/new" render={props => {
-    return( < TaskForm {...props} addTask={this.addTask}/>
+    return( < TaskForm {...props} addTask={this.addTask} deleteTask={this.deleteTask}/>
       )
         }}
         />
+
           <Route
         exact path="/events" render={props => {
             return ( <EventsList {...props} events = {this.state.events} /> )
