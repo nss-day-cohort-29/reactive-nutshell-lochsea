@@ -6,6 +6,7 @@ import NewsEditForm from "./news/NewsEditForm"
 import NewsManager from "./news/NewsManager"
 import TaskManager from "./todo/TaskManager";
 import TaskList from "./todo/TaskList";
+import TaskForm from "./todo/TaskForm";
 import EventsList from "./events/EventsList";
 import NewEventForm from "./events/NewEventForm";
 import EditEventForm from "./events/EditEventForm";
@@ -17,6 +18,7 @@ export default class ApplicationViews extends Component {
     tasks: [],
     events: []
    }
+
    addNews = (article) =>{
     return NewsManager.post(article)
       // .then(() => NewsManager.getAll())
@@ -47,10 +49,37 @@ export default class ApplicationViews extends Component {
 
       postEvent = (newEventObject) => EventsManager.post(newEventObject)
       .then(() => EventsManager.getAll())
-      .then(event => this.setState({
-          events: event
+      .then(events => this.setState({
+          events: events
           })
       )
+
+      addTask = (taskItems) => {
+        TaskManager.post(taskItems)
+          .then(() => TaskManager.getAll())
+          .then(taskItems =>
+            this.setState({
+              tasks: taskItems
+            })
+          )
+        }
+      updateEvent = (eventId, editedEventObject) => {
+        return EventsManager.put(eventId, editedEventObject)
+        .then(() => EventsManager.getAll())
+        .then(events => {
+          this.setState({
+            events: events
+          })
+        });
+      }
+
+      deleteEvent = (id) => {
+        return EventsManager.removeAndList(id)
+        .then(() => EventsManager.getAll())
+        .then(events => this.setState({
+            events: events
+        }))
+    }
 
   componentDidMount() {
 
@@ -67,11 +96,13 @@ export default class ApplicationViews extends Component {
     })
 
     TaskManager.getAll().then(allTasks => {
+      // console.log(allTasks);   Logs the database "tasks" array to the console.
       this.setState({
         tasks: allTasks
       })
     })
-}
+
+  }
 
   render() {
     return (
@@ -108,8 +139,14 @@ export default class ApplicationViews extends Component {
         />
 
         <Route path="/tasks" render={props => {
-          return(<TaskList {...props} todos={this.state.tasks}/>
-          );
+          return( <TaskList {...props} todos={this.state.tasks}/>
+            )
+        }}
+        />
+
+        <Route path="/tasks/new" render={props => {
+    return( < TaskForm {...props} addTask={this.addTask}/>
+      )
         }}
         />
           <Route
@@ -125,8 +162,8 @@ export default class ApplicationViews extends Component {
           />
 
         <Route
-        path="/events/edit" render={props => {
-            return ( <EditEventForm {...props} /> )
+        path="/events/:eventId(\d+)/edit" render={props => {
+            return ( <EditEventForm {...props} updateEvent = {this.updateEvent} deleteEvent = {this.deleteEvent} /> )
           }}
         />
       </React.Fragment>
