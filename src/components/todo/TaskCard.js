@@ -8,6 +8,7 @@ export default class TaskCard extends Component {
             <React.Fragment>
             <div className="card-body">
                     <div className="card-content">
+
                     <h5 className="card-header">
                     {this.props.task.taskName}
                      <div className="checkbox">
@@ -15,6 +16,9 @@ export default class TaskCard extends Component {
                      {/* value={value} checked={checked} onChange={onInpChange} /> */}
                      </div>
                      </h5>
+
+                    <h5 className="card-header">{this.props.task.taskName}</h5>
+
                      {this.props.task.task}
                         <div className="task-card-date">
                         {this.props.task.taskDate}

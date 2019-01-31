@@ -13,6 +13,7 @@ export default class TaskForm extends Component {
         console.log(evt.target.id, evt.target.value);
         //This will show in the console what the user is typing in the form fields
         //Also, note that the "id" here is referring to the HTML element ids in our render() below, not the database ids.
+
         taskStateToChange[evt.target.id] = evt.target.value;
         this.setState(taskStateToChange);
     }
