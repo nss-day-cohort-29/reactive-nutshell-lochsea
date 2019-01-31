@@ -7,6 +7,8 @@ export default class EventsList extends Component {
 
     this.props.events.sort(function(a,b) {return new Date(a.date) - new Date(b.date);
         });
+        let firstDiv = document.querySelector(".event--id")
+        firstDiv.setAttribute("class", "event--id--first")
 
         return (
             <React.Fragment>

@@ -5,3 +5,8 @@
 .event--entry{
     border: 2px solid red
 }
+
+.event--id--first{
+    background-color: aquamarine;
+    font-size: 2em
+}
