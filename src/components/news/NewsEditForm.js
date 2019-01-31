@@ -50,12 +50,12 @@ export default class NewsEditForm extends Component {
                     </div>
                     <div>
                         <label htmlFor="synopsis">Synopsis</label>
-                        <input type="text" required  id="synopsis" value={this.state.synopsis}
+                        <input type="text" required id="synopsis" value={this.state.synopsis}
                           onChange={this.handleFieldChange} />
                     </div>
                     <div>
                         <label htmlFor="url">url</label>
-                        <input type="text" required id="notes" value={this.state.url}
+                        <input type="text" required id="url" value={this.state.url}
                           onChange={this.handleFieldChange}
                            />
                     </div>
