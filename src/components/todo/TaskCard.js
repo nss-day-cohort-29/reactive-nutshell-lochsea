@@ -8,15 +8,24 @@ export default class TaskCard extends Component {
             <React.Fragment>
             <div className="card-body">
                     <div className="card-content">
-                    <h5 className="card-header">{this.props.task.taskName}</h5>
+                    <h5 className="card-header">
+                    {this.props.task.taskName}
+                     <div className="checkbox">
+                     <input type="checkbox" id="check" />
+                     {/* value={value} checked={checked} onChange={onInpChange} /> */}
+                     </div>
+                     </h5>
                      {this.props.task.task}
                         <div className="task-card-date">
                         {this.props.task.taskDate}
                         </div>
                      </div>
-                     <div className="card-buttons">
-                        Coming soon: details and edit
+                     <div className="edit-btn">
+                     <button type="button" id="editTask">
+                        Edit
+                    </button>
                      </div>
+
              </div>
              </React.Fragment>
         )
