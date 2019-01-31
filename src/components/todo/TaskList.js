@@ -3,18 +3,42 @@ import TaskCard from "./TaskCard"
 // todos is: {ApplicationViews.state.tasks}
 class TaskList extends Component {
     render() {
-        console.log(this.props.todos)
+            // <div>
+            //     <button type="submit" className="add-task-btn">
+            //         Create New Task!
+            //     </button>
+            // </div>
+            // The "Add New" button should be in the TaskList, not cards; we don't want it to display on every single card. But as of ~12:37 on 1/30/19, I can't figure out how to add it here. Therefore, I added it to TaskCards (because it works there) in order to work on the functionality and I will move it into this component once that is set up.
+
+            //Log "todos" to the console to see what it gives us:
+            // console.log(this.props.todos)
         return(
-            this.props.todos.map(chores =>
-            <div key={chores.id}>
-                < TaskCard key={chores.id} task={chores.task} taskName={chores.taskName} {...this.props}/>
-                  {/* <div className="card-body">
-                      <h5 className="card-title">
-                          {chores.task}
-                      </h5>
-                    </div> */}
-            </div>
-        ))
+
+            <React.Fragment>
+
+                <div>
+                    {
+                    this.props.todos.map(chores =>
+                    < TaskCard key={chores.id} task={chores.id}
+                    // taskName={chores.taskName} taskDate={chores.taskDate}
+                    {...this.props}/>
+                    )}
+                </div>
+
+                    <div className="addNewTask">
+                    <button type="button"
+                        className="add-new-task-btn"
+                        onClick={() => {
+                            console.log(this.props)
+                            this.props.history.push("/tasks/new")
+                            }}
+                            >
+                        Add New Task
+                    </button>
+                </div>
+            </React.Fragment>
+        )
     }
 }
+
 export default TaskList
