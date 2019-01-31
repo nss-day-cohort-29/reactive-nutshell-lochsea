@@ -22,19 +22,16 @@ export default class NewEventForm extends Component {
      */
     constructNewEvent = evt => {
         evt.preventDefault()
-        if (this.state.events === "") {
-            window.alert("Please complete all fields")
-        } else {
-            const createEventObject = {
-                name: this.state.eventName,
-                date: this.state.eventDate,
-                location: this.state.eventLocation,
-                userId: 99
-            }
-            // console.log("test object creation", createEventObject)
-            // Create the event and redirect user to event list
-            this.props.postEvent(createEventObject).then(() => this.props.history.push("/events"))
+
+        const createEventObject = {
+            name: this.state.eventName,
+            date: this.state.eventDate,
+            location: this.state.eventLocation,
+            userId: 99
         }
+
+            // Create the event and redirect user to event list
+        this.props.postEvent(createEventObject).then(() => this.props.history.push("/events"))
     }
 
     render() {
@@ -52,7 +49,7 @@ export default class NewEventForm extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="eventDate">Date</label>
-                        <input type="text" required
+                        <input type="date" required
                                className="form-control"
                                onChange={this.handleFieldChange}
                                id="eventDate" placeholder="Date" />
