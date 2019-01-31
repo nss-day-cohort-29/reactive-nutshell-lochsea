@@ -55,6 +55,22 @@ export default class ApplicationViews extends Component {
             })
           )
         }
+
+      deleteTask = (id) => {
+        return fetch (`remoteURL/${id}`, {
+          method: "DELETE"
+          })
+          .then(response => response.json())
+          .then(() => fetch(`remoteURL`))
+          .then(response => response.json())
+          .then(oldTasks => {
+            this.setState({
+              tasks: oldTasks
+            })
+          }
+        )
+      }
+
       updateEvent = (eventId, editedEventObject) => {
         return EventsManager.put(eventId, editedEventObject)
         .then(() => EventsManager.getAll())
